@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Entry - ADA Transport</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>ADA Transport Data Entry</h1>
+        <form action="{{ url_for('data_entry') }}" method="POST" class="mt-4">
+            <div class="form-group mb-3">
+                <label for="client_name">Client Name</label>
+                <input type="text" id="client_name" name="client_name" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="material_name">Material Name</label>
+                <input type="text" id="material_name" name="material_name" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="vehicle_number">Vehicle Number</label>
+                <input type="text" id="vehicle_number" name="vehicle_number" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="driver_name">Driver Name</label>
+                <input type="text" id="driver_name" name="driver_name" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="material_cost">Material Cost</label>
+                <input type="number" id="material_cost" name="material_cost" class="form-control" step="0.01">
+            </div>
+            <div class="form-group mb-3">
+                <label for="transport_cost">Transport Cost</label>
+                <input type="number" id="transport_cost" name="transport_cost" class="form-control" step="0.01">
+            </div>
+            <div class="form-group mb-3">
+                <label for="from_location">From Location</label>
+                <input type="text" id="from_location" name="from_location" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="to_location">To Location</label>
+                <input type="text" id="to_location" name="to_location" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="paid_amount">Paid Amount</label>
+                <input type="number" id="paid_amount" name="paid_amount" class="form-control" step="0.01">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Record</button>
+        </form>
+    </div>
+</body>
+</html>

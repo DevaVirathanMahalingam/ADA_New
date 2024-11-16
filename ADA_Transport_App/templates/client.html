@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Client</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: calc(100% - 200px);
+            max-width: 400px;
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        p {
+            color: #666;
+            font-size: 16px;
+            text-align: center;
+        }
+        .link-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 25px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .link-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Search Client</h1>
+    </header>
+    <main>
+        <form method="POST">
+            <label for="client_name">Client Name:</label>
+            <input type="text" id="client_name" name="client_name" placeholder="Enter client name" value="{{ client_name if client_name else '' }}" required>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if client_details %}
+            <h2>Client Details</h2>
+            <p><strong>Client ID:</strong> {{ client_details.id }}</p>
+            <p><strong>Client Name:</strong> {{ client_details.name }}</p>
+
+            {% if records %}
+                <h3>Client Records</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Material Name</th>
+                            <th>Vehicle Number</th>
+                            <th>Driver Name</th>
+                            <th>Material Cost</th>
+                            <th>Transport Cost</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Paid Amount</th>
+                            <th>Total Amount</th>
+                            <th>Remaining Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in records %}
+                            <tr>
+                                <td>{{ record[0] }}</td>
+                                <td>{{ record[1] }}</td>
+                                <td>{{ record[2] }}</td>
+                                <td>{{ record[3] }}</td>
+                                <td>{{ record[4] }}</td>
+                                <td>{{ record[5] }}</td>
+                                <td>{{ record[6] }}</td>
+                                <td>{{ record[7] }}</td>
+                                <td>{{ record[8] }}</td>
+                                <td>{{ record[9] }}</td>
+                                <td>{{ record[10] }}</td>
+                                
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <h3>Totals</h3>
+                <p><strong>Material Cost Total:</strong> {{ totals[0] }}</p>
+                <p><strong>Transport Cost Total:</strong> {{ totals[1] }}</p>
+                <p><strong>Total Amount:</strong> {{ totals[2] }}</p>
+                <p><strong>Remaining Amount:</strong> {{ totals[3] }}</p>
+            {% else %}
+                <p>No records found for this client.</p>
+            {% endif %}
+        {% else %}
+            <p>Client not found. Please try another search.</p>
+        {% endif %}
+        <center>
+            <a href="{{ url_for('home') }}" class="link-button">Home</a>
+        </center>
+    </main>
+    
+</body>
+</html>

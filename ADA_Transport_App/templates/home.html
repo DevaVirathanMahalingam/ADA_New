@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+        }
+        main {
+            padding: 20px;
+        }
+        .link-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 25px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .link-button:hover {
+            background-color: #0056b3;
+        }
+        .column{
+            justify-content: center;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+        button {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 25px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+    <main>
+        <p>Welcome to the ADA Transport Management System!</p>
+        <div class="column">
+            <div>
+                <a href="{{ url_for('data_entry') }}" class="link-button">Data Entry</a>
+                <a href="{{ url_for('filter_by_driver') }}" class="link-button">Filter by Driver</a>
+                <a href="{{ url_for('client') }}" class="link-button">Filter by Client</a>
+            </div>
+            <div>
+                <form action="{{ url_for('clear_data') }}" method="POST" onsubmit="return confirmClear('Are you sure you want to clear all data? This action cannot be undone!');">
+                    <button type="submit" class="btn btn-danger">Clear All Data</button>
+                </form>
+            </div>
+        </div>
+        
+    </main>
+    <script>
+        function confirmClear(message) {
+        return confirm(message);
+    }
+    </script>
+</body>
+</html>

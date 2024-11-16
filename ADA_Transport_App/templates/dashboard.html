@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ADA Transport Company</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">{{ client_name }}'s Dashboard</h1>
+        
+        <h3>Records</h3>
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Date & Time</th>
+                    <th>Material Name</th>
+                    <th>Vehicle Number</th>
+                    <th>Driver Name</th>
+                    <th>Material Cost</th>
+                    <th>Transport Cost</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Paid Amount</th>
+                    <th>Total Amount</th>
+                    <th>Remaining Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ record[2] }}</td>
+                    <td>{{ record[3] }}</td>
+                    <td>{{ record[4] }}</td>
+                    <td>{{ record[5] }}</td>
+                    <td>{{ record[6] }}</td>
+                    <td>{{ record[7] }}</td>
+                    <td>{{ record[8] }}</td>
+                    <td>{{ record[9] }}</td>
+                    <td>{{ record[10] }}</td>
+                    <td>{{ record[11] }}</td>
+                    <td>{{ record[12] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Totals:</h3>
+        <ul class="list-group mb-4">
+            <li class="list-group-item">Material Total: <strong>{{ material_total }}</strong></li>
+            <li class="list-group-item">Transport Total: <strong>{{ transport_total }}</strong></li>
+            <li class="list-group-item">Total Amount: <strong>{{ total_amount }}</strong></li>
+            <li class="list-group-item">Remaining Amount: <strong>{{ remaining_total }}</strong></li>
+        </ul>
+        <div class="column">
+            <form action="{{ url_for('clear_client_data', client_name=client_name) }}" method="post">
+                <button type="submit" class="btn btn-danger">Clear All Data for {{ client_name }}</button>
+            </form>
+            <a href="{{ url_for('home') }}" class="link-button1" style="text-decoration: none;">Home</a> 
+        </div>
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
